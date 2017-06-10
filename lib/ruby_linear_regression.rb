@@ -1,4 +1,4 @@
-class LinearRegression
+class RubyLinearRegression
 
   def initialize x_data, y_data
 
@@ -16,7 +16,7 @@ class LinearRegression
 
   end
 
-  def normalize_data( x_data )
+  def normalize_data x_data 
 
     row_size = x_data.size
     column_count = x_data[0].is_a?( Array) ? x_data[0].size : 1
@@ -38,7 +38,7 @@ class LinearRegression
         x_norm[row][i] = (row_data[i] - @mu[i]) / @sigma[i].to_f
       end
     end
-    
+
     return x_norm
 
   end
