@@ -1,5 +1,6 @@
 require 'matrix'
 
+# RubyLinearRegression
 class RubyLinearRegression
 
   attr_reader :x,:y,:theta,:mu,:sigma
@@ -9,6 +10,10 @@ class RubyLinearRegression
     @sigma = 1
   end
 
+  # Loads and normalizes the training data, must be called prior to training.
+  # Arguments:
+  #   x_data: (Two dimensiolnal array with the independent variables of your training data)
+  #   y_data: (Array with the dependent variables of your training data)
   def load_training_data x_data, y_data
 
         # normalize the x_data
@@ -24,8 +29,8 @@ class RubyLinearRegression
         @theta = Matrix[[0],[0]]
   end
 
+  # Compute the mean squared cost / error function
   def compute_cost
-    # Compute the mean squared cost / error function
     # First use matrix multiplication and vector subtracton to find errors
     errors = (@x * @theta) - @y
 
@@ -38,6 +43,7 @@ class RubyLinearRegression
     return mean_square_error
   end
 
+  # Calculate the optimal theta using the normal equation
   def train_normal_equation
     # Calculate the optimal theta using the normal equation
     # theta = ( X' * X )^1 * X' * y
@@ -46,6 +52,11 @@ class RubyLinearRegression
     return @theta
   end
 
+  # Makes a prediction based on your trained model.
+  # train_normal_equation must be called prior to making a prediction.
+  #
+  # Arguments:
+  #   data: (Array of independent variables to base your prediction on)
   def predict data
 
     # normalize

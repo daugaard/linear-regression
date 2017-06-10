@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'csv'
+#require 'ruby_linear_regression'
 require '.\lib\ruby_linear_regression.rb'
 
 class RubyLinearRegressionTest < Minitest::Test
