@@ -1,7 +1,12 @@
+require 'matrix'
+
 class RubyLinearRegression
 
-  def initialize
+  attr_reader :x,:y,:theta,:mu,:sigma
 
+  def initialize
+    @mu = 0
+    @sigma = 1
   end
 
   def load_training_data x_data, y_data
@@ -54,6 +59,8 @@ class RubyLinearRegression
     # perform prediction
     prediction = (Matrix[data] * @theta)[0,0].to_f
 
+    return prediction
+
   end
 
   private
@@ -69,10 +76,10 @@ class RubyLinearRegression
       0.upto(column_count - 1) do |column|
         column_data = x_data.map{ |e| e[column] }
         @mu[column] = column_data.inject{ |sum, e| sum + e } / row_size
-        @sigma[column] = column_data.max - column_data.min
+        @sigma[column] = (column_data.max - column_data.min)
       end
 
-      0.upto(row_size -1) do |row|
+      0.upto(row_size-1) do |row|
         row_data = x_data[row]
         x_norm[row] = Array.new(column_count)
         row_data.each_index do |i|

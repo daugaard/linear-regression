@@ -1,6 +1,11 @@
 # Ruby Linear Regression
 An implementation of a linear regression machine learning algorithm implemented in Ruby. This algorithm uses Ruby's Matrix implementation and the normal equation to train the data to the best fit. The algorithm works with multiple independent variables to predict a dependent variable.
 
+## Installation
+```
+  gem install ruby_linear_regression
+```
+
 ## Example of usage
 
 ```Ruby
@@ -24,7 +29,7 @@ linear_regression = RubyLinearRegression.new
 linear_regression.load_training_data(x_data, y_data)
 
 # Train the model using the normal equation
-theta = linear_regression.train_normal_equation
+linear_regression.train_normal_equation
 
 # Output the cost
 puts "Trained model with the following cost fit #{linear_regression.compute_cost}"
