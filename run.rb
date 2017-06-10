@@ -1,6 +1,6 @@
 require 'matrix'
 require 'csv'
-require 'ruby_linear_regression'
+require '.\lib\ruby_linear_regression.rb'
 
 x_data = []
 y_data = []
@@ -12,14 +12,19 @@ CSV.foreach("data\\staten-island-single-family-home-sales-2015.csv", :headers =>
   y_data.push( row[2].to_i )
 end
 
-# Load regression model
-linear_regression = RubyLinearRegression.new(x_data, y_data)
+# Create regression model
+linear_regression = RubyLinearRegression.new
+
+# Load training data
+linear_regression.load_training_data(x_data, y_data)
 
 # Train the model using the normal equation
 theta = linear_regression.train_normal_equation
 
 # Output the cost
-puts linear_regression.compute_cost
+puts "Trained model with the following cost fit #{linear_regression.compute_cost}"
 
 # Predict the price of a 2000 sq feet property with a 1500 sq feet house
-puts linear_regression.predict [4000, 2500]
+prediction_data = [2000, 1500]
+predicted_price = linear_regression.predict(prediction_data)
+puts "Perdicted selling price for a 1500 sq feet house on a 2000 sq feet property: #{predicted_price.round}$"
