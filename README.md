@@ -41,3 +41,5 @@ prediction_data = [2000, 1500]
 predicted_price = linear_regression.predict(prediction_data)
 puts "Perdicted selling price for a 1500 sq feet house on a 2000 sq feet property: #{predicted_price.round}$"
 ```
+
+More details about this example implementation can be found in this [blog post](http://www.practicalai.io/implementing-linear-regression-using-ruby/). 
