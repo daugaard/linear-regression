@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'csv'
 #require 'ruby_linear_regression'
-require '.\lib\ruby_linear_regression.rb'
+require './lib/ruby_linear_regression.rb'
 
 class RubyLinearRegressionTest < Minitest::Test
   def test_will_normalize_data_when_loaded
@@ -63,7 +63,7 @@ class RubyLinearRegressionTest < Minitest::Test
     x_data = []
     y_data = []
     # Load data from CSV file into two arrays - one for independent variables X and one for the dependent variable Y
-    CSV.foreach("data\\ex1data1.txt", :headers => false) do |row|
+    CSV.foreach("data/ex1data1.txt", :headers => false) do |row|
       x_data.push( [row[0].to_f] )
       y_data.push( row[1].to_f )
     end
