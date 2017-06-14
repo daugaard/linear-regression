@@ -26,7 +26,7 @@ class RubyLinearRegression
         @x = Matrix.rows( x_data )
         @y = Matrix.rows( y_data.collect { |e| [e] } )
 
-        @theta = Matrix[[0],[0]]
+        @theta = Matrix.zero(@x.column_count, 1)
   end
 
   # Compute the mean squared cost / error function
@@ -50,6 +50,26 @@ class RubyLinearRegression
     @theta = (@x.transpose * @x).inverse * @x.transpose * @y
 
     return @theta
+  end
+
+  # Calculate optimal theta using gradient descent
+  # Arguments:
+  #   alpha: Learning rate
+  #   iterations: Number of iterations to run gradient descent
+  #   verbose: If true will output cost after each iteration, can be used to find optimal learning rate (alpha) and iteration
+  def train_gradient_descent( alpha = 0.01, iterations = 500, verbose = false )
+
+    0.upto( iterations ) do |i|
+      @temp_theta = Array.new(@theta.row_size)
+      0.upto(@theta.row_size-1) do |row|
+        @temp_theta[row] = @theta[row,0] - alpha * compute_gradient(row)
+      end
+
+      @theta = Matrix.columns([@temp_theta])
+
+      puts "Cost after #{i} iterations = #{compute_cost}" if verbose
+    end
+
   end
 
   # Makes a prediction based on your trained model.
@@ -102,4 +122,15 @@ class RubyLinearRegression
 
     end
 
+    # Compute the mean squared cost / error function
+    def compute_gradient( parameter )
+
+      # First use matrix multiplication and vector subtracton to find errors
+      gradients = ((@x * @theta) - @y).transpose * @x.column(parameter)
+
+      # Mean the grandient
+      mean = gradients.inject{ |sum, e| sum + e } / gradients.size
+
+      return mean
+    end
 end
