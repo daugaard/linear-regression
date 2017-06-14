@@ -8,7 +8,7 @@ The algorithm works with one or many independent variables to predict a dependen
   gem install ruby_linear_regression
 ```
 
-## Example of usage using Normal Equation
+## Example of usage - Train model using normal equation
 
 ```Ruby
 require 'matrix'
@@ -44,7 +44,7 @@ puts "Perdicted selling price for a 1500 sq feet house on a 2000 sq feet propert
 
 More details about this example implementation can be found in this [blog post](http://www.practicalai.io/implementing-linear-regression-using-ruby/).
 
-## Example of usage using Gradient Descent
+## Example of usage - Train model using gradient descent
 
 ```Ruby
 require 'matrix'
