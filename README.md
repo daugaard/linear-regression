@@ -1,7 +1,11 @@
 # Ruby Linear Regression
-An implementation of a linear regression machine learning algorithm implemented in Ruby. This algorithm uses Ruby's Matrix implementation and the normal equation to train the data to the best fit.
+An implementation of a linear regression machine learning algorithm implemented in Ruby.
 
-The algorithm works with one or many independent variables to predict a dependent variable.
+Features:
+- Supports simple problems with one independent variable to predict a dependent variable and multivariate problems with multiple independent variables to predict a dependent variable.
+- Supports training using the normal equation
+- Supports training using gradient descent
+- The library is implemented in pure ruby using Ruby's Matrix implementation.
 
 ## Installation
 ```
