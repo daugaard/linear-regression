@@ -3,7 +3,7 @@ require 'matrix'
 # RubyLinearRegression
 class RubyLinearRegression
 
-  attr_reader :x,:y,:theta,:mu,:sigma
+  attr_reader :x,:y,:theta,:mu,:sigma, :lambda, :normalize
 
   def initialize
     @mu = 0
@@ -14,10 +14,12 @@ class RubyLinearRegression
   # Arguments:
   #   x_data: (Two dimensiolnal array with the independent variables of your training data)
   #   y_data: (Array with the dependent variables of your training data)
-  def load_training_data x_data, y_data
+  def load_training_data x_data, y_data, normalize = true
+
+        @normalize = normalize
 
         # normalize the x_data
-        x_data = normalize_data( x_data )
+        x_data = normalize_data( x_data ) if @normalize
 
         # add 1 column to our data
         x_data = x_data.map { |r| [1].concat(r) }
@@ -82,7 +84,7 @@ class RubyLinearRegression
     # normalize
     data.each_index do |i|
       data[i] = (data[i] - @mu[i]) / @sigma[i].to_f
-    end
+    end if @normalize
 
     # add 1 column to prediction data
     data = [1].concat( data )

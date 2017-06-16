@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "ruby_linear_regression"
-  s.version     = "0.1.2"
+  s.version     = "0.1.4"
   s.date        = "2017-06-15"
   s.summary     = "Linear regression implemented in Ruby."
   s.description = %q{An implementation of a linear regression machine learning algorithm implemented in Ruby.

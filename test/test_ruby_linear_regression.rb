@@ -22,6 +22,7 @@ class RubyLinearRegressionTest < Minitest::Test
     assert_equal linear_regression.predict([5]), 1.5
   end
 
+
   def test_can_perfectly_fit_a_straight_line
     linear_regression = RubyLinearRegression.new
 
@@ -71,6 +72,29 @@ class RubyLinearRegressionTest < Minitest::Test
     linear_regression = RubyLinearRegression.new
 
     linear_regression.load_training_data x_data, y_data
+
+    # Initial cost with a 0,0 theta
+    assert_equal 32.07, linear_regression.compute_cost.round(2)
+
+    linear_regression.train_normal_equation
+
+    assert_equal linear_regression.predict( [3.5] ).round(4), 0.2798
+    assert_equal linear_regression.predict( [7] ).round(4), 4.4555
+
+  end
+
+  def test_can_predict_with_know_data_no_normalization
+    x_data = []
+    y_data = []
+    # Load data from CSV file into two arrays - one for independent variables X and one for the dependent variable Y
+    CSV.foreach("data/ex1data1.txt", :headers => false) do |row|
+      x_data.push( [row[0].to_f] )
+      y_data.push( row[1].to_f )
+    end
+
+    linear_regression = RubyLinearRegression.new
+
+    linear_regression.load_training_data x_data, y_data, false
 
     # Initial cost with a 0,0 theta
     assert_equal 32.07, linear_regression.compute_cost.round(2)
