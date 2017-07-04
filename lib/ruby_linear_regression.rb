@@ -32,12 +32,26 @@ class RubyLinearRegression
   end
 
   # Compute the mean squared cost / error function
-  def compute_cost
+  def compute_cost test_x = nil, test_y = nil
+
+    if not test_x.nil?
+      test_x.each_index do |row|
+        test_x[row].each_index do |i|
+          test_x[row][i] = (test_x[row][i] - @mu[i]) / @sigma[i].to_f
+        end
+      end if @normalize
+      test_x = test_x.map { |r| [1].concat(r) }
+    end
+
+    # per default use training data to compute cost if no data is given
+    cost_x = test_x.nil? ? @x : Matrix.rows( test_x )
+    cost_y = test_y.nil? ? @y : Matrix.rows( test_y.collect { |e| [e] } )
+
     # First use matrix multiplication and vector subtracton to find errors
-    errors = (@x * @theta) - @y
+    errors = (cost_x * @theta) - cost_y
 
     # Then square all errors
-    errors = errors.map { |e| e * e  }
+    errors = errors.map { |e| (e.to_f**2)  }
 
     # Find the mean of the square errors
     mean_square_error = 0.5 * (errors.inject{ |sum, e| sum + e }.to_f / errors.row_size)
@@ -46,10 +60,16 @@ class RubyLinearRegression
   end
 
   # Calculate the optimal theta using the normal equation
-  def train_normal_equation
+  def train_normal_equation l = 0
+
+    @lambda = l
+    lambda_matrix = Matrix.build(@theta.row_size,@theta.row_size) do |c,r|
+        (( c == 0 && r == 0) || c != r) ? 0 : 1;
+      end
+
     # Calculate the optimal theta using the normal equation
     # theta = ( X' * X )^1 * X' * y
-    @theta = (@x.transpose * @x).inverse * @x.transpose * @y
+    @theta = (@x.transpose * @x + @lambda * lambda_matrix ).inverse * @x.transpose * @y
 
     return @theta
   end
@@ -97,7 +117,7 @@ class RubyLinearRegression
   end
 
   private
-    def normalize_data x_data
+    def normalize_data(x_data, mu = nil, sigma = nil)
 
       row_size = x_data.size
       column_count = x_data[0].is_a?( Array) ? x_data[0].size : 1

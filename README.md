@@ -1,4 +1,6 @@
 # Ruby Linear Regression
+[![Gem Version](https://badge.fury.io/rb/ruby_linear_regression.svg)](https://badge.fury.io/rb/ruby_linear_regression)
+
 An implementation of a linear regression machine learning algorithm implemented in Ruby.
 
 Features:
