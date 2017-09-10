@@ -45,7 +45,7 @@ puts "Trained model with the following cost fit #{linear_regression.compute_cost
 # Predict the price of a 2000 sq feet property with a 1500 sq feet house
 prediction_data = [2000, 1500]
 predicted_price = linear_regression.predict(prediction_data)
-puts "Perdicted selling price for a 1500 sq feet house on a 2000 sq feet property: #{predicted_price.round}$"
+puts "Predicted selling price for a 1500 sq feet house on a 2000 sq feet property: #{predicted_price.round}$"
 ```
 
 More details about this example implementation can be found in this [blog post](http://www.practicalai.io/implementing-linear-regression-using-ruby/).
@@ -73,7 +73,7 @@ linear_regression = RubyLinearRegression.new
 linear_regression.load_training_data(x_data, y_data)
 
 # Train the model using gradient descent
-linear_regression_gradient_descent.train_gradient_descent(0.0005, 1000, true)
+linear_regression.train_gradient_descent(0.0005, 1000, true)
 
 # Output the cost
 puts "Trained model with the following cost fit #{linear_regression.compute_cost}"
@@ -81,5 +81,5 @@ puts "Trained model with the following cost fit #{linear_regression.compute_cost
 # Predict the price of a 2000 sq feet property with a 1500 sq feet house
 prediction_data = [2000, 1500]
 predicted_price = linear_regression.predict(prediction_data)
-puts "Perdicted selling price for a 1500 sq feet house on a 2000 sq feet property: #{predicted_price.round}$"
+puts "Predicted selling price for a 1500 sq feet house on a 2000 sq feet property: #{predicted_price.round}$"
 ```
