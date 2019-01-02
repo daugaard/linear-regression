@@ -28,7 +28,7 @@ class RubyLinearRegression
         @x = Matrix.rows( x_data )
         @y = Matrix.rows( y_data.collect { |e| [e] } )
 
-        @theta = Matrix.zero(@x.column_count, 1)
+        @theta = Matrix.zero(@x.column_size, 1)
   end
 
   # Compute the mean squared cost / error function
