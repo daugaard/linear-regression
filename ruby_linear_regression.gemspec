@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage    =
     'https://github.com/daugaard/linear-regression'
   s.license       = 'MIT'
-  s.add_dependency 'csv'
   s.add_dependency 'matrix'
+  s.add_development_dependency 'csv'
   s.add_development_dependency 'minitest', '~> 5.10', '>= 5.10.2'
 end

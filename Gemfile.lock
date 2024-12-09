@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     ruby_linear_regression (0.1.6)
-      csv
       matrix
 
 GEM
@@ -17,6 +16,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  csv
   minitest (~> 5.10, >= 5.10.2)
   ruby_linear_regression!
 
