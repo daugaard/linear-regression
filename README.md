@@ -83,3 +83,22 @@ prediction_data = [2000, 1500]
 predicted_price = linear_regression.predict(prediction_data)
 puts "Predicted selling price for a 1500 sq feet house on a 2000 sq feet property: #{predicted_price.round}$"
 ```
+
+
+# Development
+
+To install all dependencies run:
+```
+bundle install
+```
+
+To run tests use:
+```
+bundle exec ruby test/*
+```
+
+Build and publish with:
+```
+gem build
+gem push ruby_linear_regression-x.x.x.gem
+```
