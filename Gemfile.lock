@@ -1,0 +1,24 @@
+PATH
+  remote: .
+  specs:
+    ruby_linear_regression (0.1.6)
+      csv
+      matrix
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    csv (3.3.0)
+    matrix (0.4.2)
+    minitest (5.25.4)
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  minitest (~> 5.10, >= 5.10.2)
+  ruby_linear_regression!
+
+BUNDLED WITH
+   2.5.16
